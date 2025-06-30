@@ -55,13 +55,14 @@ export function LoginForm({
           setTimeout(() => {
             setisLoading(false);
 
-            router.push("/chat");
+            router.push("/dashboard");
           }, 1500);
         }
 
         if (res.status >= 400) {
           toast({
-            description: data.detail || data.error || "Aconteceu um erro",
+            description:
+              data.detail || data.error || data.mensagem || "Aconteceu um erro",
             variant: "destructive",
           });
         }

@@ -20,9 +20,24 @@ export function post(
 ) {
   const token = clientCookie().get("token");
 
-  console.log(API_URL);
   return fetch(API_URL + endpoint, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  });
+}
+
+export function put(
+  endpoint: string,
+  body: Record<string, unknown> | undefined
+) {
+  const token = clientCookie().get("token");
+
+  return fetch(API_URL + endpoint, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

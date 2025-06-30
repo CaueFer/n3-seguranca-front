@@ -78,6 +78,7 @@ body {
   --letter-spacing: 0em;
   --spacing: 0.25rem;
   --tracking-normal: 0em;
+  --sidebar-width: 250px;
 }
 
 .dark {

@@ -55,19 +55,20 @@ export function SignupForm({
 
         if (res.ok) {
           toast({
-            description: data.message,
+            description: data.message || data.mensagem,
             variant: "default",
           });
 
           setLogged(true);
 
           cookie.set("token", data.token);
-          router.push("/dashboard");
+
+          if (data.token) router.push("/login");
         }
 
         if (res.status >= 400) {
           toast({
-            description: data.detail,
+            description: data.detail || data.mensagem,
             variant: "destructive",
           });
         }
