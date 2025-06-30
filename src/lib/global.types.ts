@@ -19,3 +19,16 @@ declare module "@tanstack/react-table" {
     updateRow?: (newData: TData) => void;
   }
 }
+
+export interface IRelatorio {
+  titulo: string;
+  descricao: string;
+  valor: number;
+  data?: string;
+  status?: "pendente" | "validado" | "assinado" | "rejeitado";
+  criadoPor: string;
+  assinaturaDigital?: string | null;
+  comprovante?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+}

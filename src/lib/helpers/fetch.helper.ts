@@ -30,19 +30,15 @@ export function post(
   });
 }
 
-export function put(
-  endpoint: string,
-  body: Record<string, unknown> | undefined
-) {
+export function postForm(endpoint: string, body: FormData | undefined) {
   const token = clientCookie().get("token");
 
   return fetch(API_URL + endpoint, {
-    method: "PUT",
+    method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
-    body: JSON.stringify(body),
+    body,
   });
 }
 
