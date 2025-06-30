@@ -3,7 +3,15 @@ import { EyeClosed, Eye, ClipboardMinus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/inputs/input";
 import SpinnerSvg from "@/components/svg/spinner";
 import { Button } from "@/components/ui/button";
@@ -13,7 +21,6 @@ import { clientCookie } from "@/lib/hooks/getClientCookie";
 import { post } from "@/lib/helpers/fetch.helper";
 import { useToast } from "@/lib/hooks/use-toast";
 import { cn } from "@/lib/utils";
-
 
 export function SignupForm({
   className,
@@ -37,11 +44,11 @@ export function SignupForm({
     const cargo = formData.get("cargo");
     const password = formData.get("password");
 
-    post("/auth/signup", {
-      username,
+    post("/auth/registrar", {
+      nome: username,
       email,
       cargo,
-      password,
+      senha: password,
     })
       .then(async (res: Response) => {
         const data = await res.json();
@@ -85,7 +92,7 @@ export function SignupForm({
               className="flex flex-col items-center gap-2 font-medium"
             >
               <div className="flex h-8 w-8 items-center justify-center rounded-md">
-                <ClipboardMinus  className="size-6" />
+                <ClipboardMinus className="size-6" />
               </div>
               <span className="sr-only">Logo</span>
             </Link>
@@ -128,7 +135,7 @@ export function SignupForm({
               />
             </div>
 
-             {/* CARGO */}
+            {/* CARGO */}
             <div className="grid gap-2">
               <Label htmlFor="cargo">Cargo</Label>
 
@@ -169,7 +176,7 @@ export function SignupForm({
                 </Button>
               </div>
             </div>
-            
+
             <Button type="submit" className="w-full">
               {isLoading ? (
                 <>

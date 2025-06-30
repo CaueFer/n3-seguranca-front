@@ -37,14 +37,14 @@ export function LoginForm({
 
     post("/auth/login", {
       email,
-      password,
+      senha: password,
     })
       .then(async (res: Response) => {
         const data = await res.json();
 
         if (res.ok) {
           toast({
-            description: data.message,
+            description: data.mensagem || "Logado com sucesso!",
             variant: "default",
           });
 
@@ -61,7 +61,7 @@ export function LoginForm({
 
         if (res.status >= 400) {
           toast({
-            description: data.detail || data.error,
+            description: data.detail || data.error || "Aconteceu um erro",
             variant: "destructive",
           });
         }
@@ -125,7 +125,7 @@ export function LoginForm({
                   disabled={logged}
                 />
                 <Button
-                className="bg-primary"
+                  className="bg-primary"
                   type="button"
                   size={"sm"}
                   onClick={() => setShowPassword((prev) => !prev)}
@@ -134,7 +134,11 @@ export function LoginForm({
                 </Button>
               </div>
             </div>
-            <Button type="submit" className="w-full bg-primary" disabled={logged}>
+            <Button
+              type="submit"
+              className="w-full bg-primary"
+              disabled={logged}
+            >
               {isLoading ? (
                 <>
                   <SpinnerSvg /> Carregando...
@@ -146,7 +150,6 @@ export function LoginForm({
           </div>
         </div>
       </form>
-    
     </div>
   );
 }

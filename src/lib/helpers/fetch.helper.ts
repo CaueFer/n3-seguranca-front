@@ -20,6 +20,7 @@ export function post(
 ) {
   const token = clientCookie().get("token");
 
+  console.log(API_URL);
   return fetch(API_URL + endpoint, {
     method: "POST",
     headers: {
